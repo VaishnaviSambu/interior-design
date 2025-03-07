@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Contact Us</h1>
+    <form method="POST" action="{{ url_for('main.contact') }}">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.customer_name.label }}<br>
+            {{ form.customer_name(size=32) }}<br>
+        </div>
+        <div>
+            {{ form.customer_email.label }}<br>
+            {{ form.customer_email(size=32) }}<br>
+        </div>
+        <div>
+            {{ form.room_type.label }}<br>
+            {{ form.room_type() }}<br>
+        </div>
+        <div>
+            {{ form.style_preference.label }}<br>
+            {{ form.style_preference() }}<br>
+        </div>
+        <div>
+            {{ form.message.label }}<br>
+            {{ form.message(cols=32, rows=4) }}<br>
+        </div>
+        <div>
+            {{ form.submit() }}
+        </div>
+    </form>
+</body>
+</html>

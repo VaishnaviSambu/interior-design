@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Design Suggestions</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Design Suggestions</h1>
+    <ul>
+        {% for suggestion in suggestions %}
+            <li>
+                <strong>{{ suggestion.customer_name }}</strong> - {{ suggestion.room_type }} - {{ suggestion.style_preference }}<br>
+                {{ suggestion.suggestion }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

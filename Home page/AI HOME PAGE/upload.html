@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image - AI Interior Designer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .sample-image.selected {
+            border-color: #3b82f6;
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .sample-image-wrapper {
+            position: relative;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .sample-image-wrapper:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .sample-image-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-size: 1.25rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .sample-image-wrapper:hover .sample-image-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+
+    <!-- Header Section -->
+    <header class="bg-blue-800 shadow">
+        <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+            <div class="text-2xl font-bold text-white">AI Interior Designer</div>
+            <nav class="space-x-4">
+                <a href="index.html" class="font-semibold text-white hover:text-gray-800">Home</a>
+                <a href="about.html" class="font-semibold text-white hover:text-gray-800">About</a>
+                <a href="services.html" class="font-semibold text-white hover:text-gray-800">Services</a>
+                <a href="contact.html" class=" font-semibold text-white hover:text-gray-800">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="bg-cover" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2),rgba(0, 0, 0, 0.2) ),url('https://images.pexels.com/photos/1571458/pexels-photo-1571458.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
+        <div class="flex-grow container mx-auto px-4 py-5">
+        <div class="mt-1 max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
+            <form id="upload-form" class="space-y-6">
+                <div class="flex items-center justify-center w-full">
+                    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                            </svg>
+                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                        </div>
+                        <input type="file" id="image" name="image" accept="image/*" class="hidden">
+                    </label>
+                </div>
+                <div>
+                    <label for="sample-images" class="block text-sm font-medium text-gray-700">Or Select a Sample Image</label>
+                    <div id="sample-images" class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        <!-- Sample images -->
+                        <div class="sample-image-wrapper cursor-pointer">
+                            <img src="https://images.pexels.com/photos/271649/pexels-photo-271649.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sample 1" class="sample-image border-2 border-transparent rounded-md w-full h-full object-cover">
+                            <div class="sample-image-overlay">Select</div>
+                        </div>
+                        <div class="sample-image-wrapper cursor-pointer">
+                            <img src="https://images.pexels.com/photos/3935338/pexels-photo-3935338.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sample 2" class="sample-image border-2 border-transparent rounded-md w-full h-full object-cover">
+                            <div class="sample-image-overlay">Select</div>
+                        </div>
+                        <div class="sample-image-wrapper cursor-pointer">
+                            <img src="https://images.pexels.com/photos/20282411/pexels-photo-20282411/free-photo-of-lamps-hanging-over-empty-room.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Sample 3" class="sample-image border-2 border-transparent rounded-md w-full h-full object-cover">
+                            <div class="sample-image-overlay">Select</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-600">Submit Image</button>
+                </div>
+                
+            </form>
+            <div id="status-message" class="mt-4 text-center"></div>
+        </div>
+    </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 mt-auto">
+        <div class="container mx-auto px-4 py-6 text-center text-gray-400">
+            <p>&copy; 2024 AI Interior Designer. All rights reserved.</p>
+            <p>Follow us on:
+                <a href="#" class="text-blue-400 hover:text-white">Twitter</a>,
+                <a href="#" class="text-blue-400 hover:text-white">Facebook</a>,
+                <a href="#" class="text-blue-400 hover:text-white">Instagram</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let selectedSampleImage = null;
+
+            document.querySelectorAll('.sample-image-wrapper').forEach(wrapper => {
+                wrapper.addEventListener('click', function() {
+                    document.querySelectorAll('.sample-image').forEach(img => img.classList.remove('selected'));
+                    this.querySelector('.sample-image').classList.add('selected');
+                    selectedSampleImage = this.querySelector('.sample-image').src;
+                    document.getElementById('image').value = '';
+                });
+            });
+
+            document.getElementById('upload-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const formData = new FormData();
+
+                if (selectedSampleImage) {
+                    formData.append('image_url', selectedSampleImage);
+                } else {
+                    const fileInput = document.getElementById('image');
+                    if (fileInput.files.length > 0) {
+                        formData.append('image', fileInput.files[0]);
+                    } else {
+                        document.getElementById('status-message').innerText = "Please select or upload an image.";
+                        return;
+                    }
+                }
+
+                document.getElementById('status-message').innerText = "Submitting image...";
+
+                fetch('YOUR_BACKEND_API_URL', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status-message').innerText = "Image submitted successfully!";
+                })
+                .catch(error => {
+                    document.getElementById('status-message').innerText = "Failed to submit image. Please try again later.";
+                    console.error('Error:', error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

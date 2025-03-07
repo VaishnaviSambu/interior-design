@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - AI Interior Designer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.emailjs.com/dist/email.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("YOUR_USER_ID"); // Replace 'YOUR_USER_ID' with your EmailJS user ID
+        })();
+    </script>
+</head>
+<body class="bg-gray-100">
+<!-- Header Section -->
+<header class="bg-blue-800 shadow">
+    <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+        <div class="text-2xl font-bold text-white">AI Interior Designer</div>
+        <nav class="space-x-4">
+            <a href="index.html" class="font-semibold text-white hover:text-gray-800">Home</a>
+            <a href="about.html" class="font-semibold text-white hover:text-gray-800">About</a>
+            <a href="services.html" class="font-semibold text-white hover:text-gray-800">Services</a>
+            <a href="contact.html" class=" font-semibold text-white hover:text-gray-800">Contact</a>
+        </nav>
+    </div>
+</header>
+
+    <!-- Contact Form Section -->
+    <section class="bg-cover" style="background-image: url('https://images.pexels.com/photos/6794920/pexels-photo-6794920.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
+        <div class="container mx-auto px-4 py-16">
+        <h2 class="text-3xl font-bold text-center text-white">Contact Us</h2>
+        <p class="mt-4 text-center text-white">We'd love to hear from you! Please fill out the form below to get in touch.</p>
+        
+        <div class="mt-12 max-w-lg mx-auto bg-blue-100 p-8 rounded-lg shadow-lg">
+            <form id="contact-form" class="space-y-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" id="name" name="name" required class="bg-blue-50 mt-1 block w-full border-gray-500 shadow-sm">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" required class="bg-blue-50 mt-1 block w-full border-gray-300 shadow-sm">
+                </div>
+                <div>
+                    <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                    <input type="text" id="subject" name="subject" required class="bg-blue-50 mt-1 block w-full border-gray-300 shadow-sm">
+                </div>
+                <div>
+                    <label for="body" class="block text-sm font-medium text-gray-700">Message</label>
+                    <textarea id="body" name="body" rows="4" required class="bg-blue-50 mt-1 block w-full border-gray-300 shadow-sm"></textarea>
+                </div>
+                <div>
+                    <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-blue-600">Send Message</button>
+                </div>
+            </form>
+            <div id="status-message" class="mt-4 text-center"></div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800">
+        <div class="container mx-auto px-4 py-6 text-center text-gray-400">
+            <p>&copy; 2024 AI Interior Designer. All rights reserved.</p>
+            <p>Follow us on:
+                <a href="#" class="text-blue-400 hover:text-white">Twitter</a>,
+                <a href="#" class="text-blue-400 hover:text-white">Facebook</a>,
+                <a href="#" class="text-blue-400 hover:text-white">Instagram</a>
+            </p>
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Show a loading message
+            document.getElementById('status-message').innerText = "Sending message...";
+
+            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+                .then(function() {
+                    document.getElementById('status-message').innerText = "Message sent successfully!";
+                }, function(error) {
+                    document.getElementById('status-message').innerText = "Failed to send message. Please try again later.";
+                });
+        });
+    </script>
+</body>
+</html>
